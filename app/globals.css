@@ -1,26 +1,139 @@
 @import "tailwindcss";
 
+/* `dark:` = site dark mode (class .dark on <html>, set by lib/theme.ts). */
+@custom-variant dark (&:where(.dark, .dark *));
+/* `on-dark:` = inside an always-dark band (<Section tone="dark">, .theme-dark). */
+@custom-variant on-dark (&:where(.theme-dark, .theme-dark *));
+
+/*
+ * FIXED brand tokens: identical in light and dark mode.
+ * Source: content-info/color-code.jpeg (see .claude/STYLE_GUIDE.md).
+ *   ink/paper → literal black/white: text on yellow, always-dark bands.
+ */
+@theme {
+  --color-brand: #fed700; /* primary yellow: "ai", tagline bar, CTAs */
+  --color-brand-amber: #fec60d; /* hover / secondary yellow */
+  --color-brand-orange: #fdab01; /* warm accent */
+  --color-brand-orange-deep: #ed6100; /* strong accent, use sparingly */
+  --color-ink: #000000;
+  --color-paper: #ffffff;
+  --color-muted-dark: #a1a1aa; /* secondary text inside dark bands */
+  --color-line-dark: #27272a; /* borders inside dark bands */
+}
+
+/*
+ * THEME tokens: switch with dark mode. Use these for page backgrounds,
+ * body text, cards, and borders: bg-canvas, text-fg, bg-card, border-line …
+ */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --canvas: #ffffff;
+  --fg: #000000;
+  --surface: #fafafa;
+  --card: #ffffff;
+  --line: #e4e4e7;
+  --muted: #52525b; /* AA on canvas/surface/card */
+  --danger: #b91c1c;
+  --pattern-dot: rgb(0 0 0 / 0.13);
+  --glow-color: rgb(254 215 0 / 0.16);
+  color-scheme: light;
+}
+
+.dark {
+  --canvas: #0a0a0a;
+  --fg: #f4f4f5;
+  --surface: #111113;
+  --card: #161618;
+  --line: #2a2a2e;
+  --muted: #a1a1aa;
+  --danger: #f87171;
+  --pattern-dot: rgb(255 255 255 / 0.09);
+  --glow-color: rgb(254 215 0 / 0.09);
+  color-scheme: dark;
+}
+
+/* Always-dark bands use light dots regardless of mode. */
+.theme-dark {
+  --pattern-dot: rgb(255 255 255 / 0.11);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-canvas: var(--canvas);
+  --color-fg: var(--fg);
+  --color-surface: var(--surface);
+  --color-card: var(--card);
+  --color-line: var(--line);
+  --color-muted: var(--muted);
+  --color-danger: var(--danger);
+
+  /* Fonts come from next/font CSS variables set in app/layout.tsx. */
+  --font-sans: var(--font-poppins), ui-sans-serif, system-ui, sans-serif;
+  /* Boomstad (licensed file pending) → falls back to Poppins until added. */
+  --font-display: var(--font-boomstad, var(--font-poppins)), ui-sans-serif, system-ui, sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* ------------------------------------------------------------------ */
+/* Decorative utilities                                                */
+/* ------------------------------------------------------------------ */
+
+/* Dot-grid background. Colour follows --pattern-dot (theme/band aware). */
+@utility pattern-dots {
+  background-image: radial-gradient(circle, var(--pattern-dot) 1.2px, transparent 1.6px);
+  background-size: 22px 22px;
+}
+
+/* Fades a decorative layer out toward the edges. */
+@utility pattern-fade {
+  mask-image: radial-gradient(ellipse 75% 70% at 50% 40%, #000 30%, transparent 100%);
+}
+
+/* Cursor glow layer (components/effects/cursor-glow.tsx sets --glow-x/y). */
+@utility cursor-glow {
+  background: radial-gradient(
+    360px circle at var(--glow-x, -999px) var(--glow-y, -999px),
+    var(--glow-color),
+    transparent 70%
+  );
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-canvas font-sans text-fg antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-display font-bold tracking-tight text-balance;
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--fg);
+    outline-offset: 2px;
+  }
+
+  .theme-dark :focus-visible {
+    outline-color: var(--color-brand);
+  }
+
+  ::selection {
+    @apply bg-brand text-ink;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
 }

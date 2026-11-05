@@ -1,69 +1,62 @@
-import Image from "next/image";
+import { home, practices, site, stats, type HomeSection } from "@/content";
+import { JsonLd } from "@/components/seo/json-ld";
+import { CtaBand } from "@/components/sections/cta-band";
+import { HomeHero } from "@/components/sections/home-hero";
+import { PracticeGrid } from "@/components/sections/practice-grid";
+import { StatsBand } from "@/components/sections/stats-band";
+import { WhyInara } from "@/components/sections/why-inara";
+import { Section } from "@/components/ui/section";
+import { SectionHeading } from "@/components/ui/section-heading";
+import { absoluteUrl, toMetadata } from "@/lib/seo";
 
-export default function Home() {
+export const metadata = toMetadata(home.seo, "/");
+
+/** Home page: sections render in the order defined in content/home.ts. */
+export default function HomePage() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+    <>
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          name: site.name,
+          slogan: site.tagline,
+          description: site.pitch,
+          url: absoluteUrl("/"),
+          logo: absoluteUrl("/brand/inara-logo.png"),
+          email: site.contact.email,
+          telephone: site.contact.phones[0]?.tel,
+        }}
+      />
+      {home.sections.map((section, i) => (
+        <HomeSectionView key={`${section.type}-${i}`} section={section} />
+      ))}
+    </>
   );
+}
+
+function HomeSectionView({ section }: { section: HomeSection }) {
+  switch (section.type) {
+    case "hero":
+      return <HomeHero data={section} />;
+    case "practices":
+      return (
+        <Section tone="surface" pattern>
+          <SectionHeading title={section.title} intro={section.intro} />
+          <div className="mt-12">
+            <PracticeGrid practices={practices} exploreLabel={site.ui.explore} />
+          </div>
+        </Section>
+      );
+    case "why":
+      return <WhyInara data={section} />;
+    case "stats":
+      return <StatsBand data={stats} />;
+    case "cta":
+      return <CtaBand title={section.title} items={section.items} />;
+    default: {
+      const unhandled: never = section;
+      return unhandled;
+    }
+  }
 }
