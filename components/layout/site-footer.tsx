@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { cacheLife } from "next/cache";
-import { practices, site } from "@/content";
+import { getCompanyLinks, practices, site } from "@/content";
 import { Container } from "@/components/ui/container";
 import { MailIcon, PhoneIcon, WhatsAppIcon } from "@/components/ui/icons";
 import { Logo } from "@/components/ui/logo";
@@ -31,7 +31,7 @@ export function SiteFooter() {
         </FooterColumn>
 
         <FooterColumn title={footer.companyHeading}>
-          {footer.companyLinks.map((l) => (
+          {getCompanyLinks().map((l) => (
             <li key={l.href}>
               <Link href={l.href} className="hover:text-brand">
                 {l.label}

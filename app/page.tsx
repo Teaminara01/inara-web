@@ -1,5 +1,6 @@
 import { home, practices, site, stats, type HomeSection } from "@/content";
 import { JsonLd } from "@/components/seo/json-ld";
+import { TimelineBlock } from "@/components/blocks/timeline-block";
 import { CtaBand } from "@/components/sections/cta-band";
 import { HomeHero } from "@/components/sections/home-hero";
 import { PracticeGrid } from "@/components/sections/practice-grid";
@@ -50,6 +51,12 @@ function HomeSectionView({ section }: { section: HomeSection }) {
       );
     case "why":
       return <WhyInara data={section} />;
+    case "timeline":
+      return (
+        <Section>
+          <TimelineBlock {...section.block} />
+        </Section>
+      );
     case "stats":
       return <StatsBand data={stats} />;
     case "cta":

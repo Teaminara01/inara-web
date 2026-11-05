@@ -30,6 +30,9 @@ content/
   ctas.ts                   # reusable CTAs, referenced by pages instead of retyping labels
   home.ts                   # home page sections, in render order
   stats.ts                  # track-record numbers: `enabled: false` until real values exist
+  projects/
+    index.ts                # registry: allProjects (display order), draft filtering
+    <slug>.ts               # one file per client project (cover image in public/work/)
   forms/
     contact.ts              # fields, labels, WhatsApp message template, fallback text
   services/
@@ -83,8 +86,9 @@ lib/
 6. **Plain strings only.** For emphasis, `**bold**` is rendered by one `RichText` helper. Never store raw HTML or JSX in content.
 7. **Server-side only.** Content is read in Server Components. Pass only the needed slice as props to client leaves such as the WhatsApp form.
 8. **Assets.** Image paths point to `public/` (`"/brand/logo.png"`), never `content-info/`.
-9. **No invented content.** Seed text word for word from `content-info/inara-ai-services.md`. Bracket placeholders like `[Clients served]` never become values.
-10. **Environment vs content.** Information the business might change (copy, phone, WhatsApp number) goes in `content/`. Deployment-specific values (site URL) go in env: `NEXT_PUBLIC_SITE_URL` in `.env.local`, documented in a committed `.env.example`.
+9. **Draft projects.** `draft: true` projects render only in `npm run dev`, with a "Draft · sample data" badge. Production builds, the sitemap and the nav exclude them. The `sample-*` projects are fictional layout samples: replace them, never publish them.
+10. **No invented content.** Seed text word for word from `content-info/inara-ai-services.md`. Bracket placeholders like `[Clients served]` never become values.
+11. **Environment vs content.** Information the business might change (copy, phone, WhatsApp number) goes in `content/`. Deployment-specific values (site URL) go in env: `NEXT_PUBLIC_SITE_URL` in `.env.local`, documented in a committed `.env.example`.
 
 ## Common changes (cookbook)
 
@@ -101,6 +105,8 @@ lib/
 | Change a button/aria label ("Learn more") | `content/site.ts` → `ui`                                            |
 | Set the production domain               | `NEXT_PUBLIC_SITE_URL` in `.env.local` / hosting env                 |
 | **Add a new service**                   | 1. Create `content/services/<practice>/<slug>.ts` (copy a sibling). 2. Add it to that practice's `services` array in `content/services/index.ts`. The page, sitemap, nav, and form dropdown update automatically. |
+| **Add a client project**                | 1. Copy a file in `content/projects/`. 2. Add a ~1600×1000 cover to `public/work/`. 3. Add it to `allProjects` in `content/projects/index.ts`. Leave out `draft` (or set it to `false`) to publish. The page, sitemap entry and "Our Work" nav link then appear. |
+| Edit the 4-week deployment timeline     | `content/services/ai-automation/practice.ts` → `aiDeploymentTimeline` (shown on the AI page and the home page) |
 | Add a field to all services             | Add it to `Service` in `content/schema.ts`. TypeScript then lists every file that needs it. |
 
 After any change: `npm run typecheck && npm run build`.

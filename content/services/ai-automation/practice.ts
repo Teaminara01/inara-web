@@ -1,6 +1,41 @@
 /** §3 AI & Intelligent Automation: practice overview. */
 import { ctas } from "../../ctas";
-import type { PracticeInfo } from "../../schema";
+import type { PracticeInfo, TimelineBlock } from "../../schema";
+
+/** 4-week deployment timeline. Also shown on the home page (content/home.ts). */
+export const aiDeploymentTimeline = {
+  type: "timeline",
+  title: "Your AI Transformation in",
+  highlight: "4 Simple Steps",
+  items: [
+    {
+      label: "Week 1",
+      title: "Discover & Map",
+      text: "We audit your workflows, identify automation hotspots, and map which agents will deliver the highest ROI, specific to your business.",
+      icon: "search",
+    },
+    {
+      label: "Week 2",
+      title: "Build & Configure",
+      text: "We build a custom software solution around specialised AI agents, configure the orchestration layer, and integrate it with your existing tools, with progress visible in real time.",
+      icon: "code",
+    },
+    {
+      label: "Week 3",
+      title: "Test & Refine",
+      text: "Rigorous testing with your real data. Edge cases handled. Human-in-the-loop guardrails verified. Nothing ships unproven.",
+      icon: "flask",
+    },
+    {
+      label: "Week 4",
+      title: "Deploy & Scale",
+      text: "We use DevOps engineering practices to deploy the orchestration layer with monitoring dashboards, then continue optimising, scaling, and adding agents as your business grows.",
+      icon: "rocket",
+    },
+  ],
+  note: "Simpler automations can go live in 2–3 weeks. Every deployment includes ongoing optimization, 24/7 monitoring, and a dedicated success partner.",
+  cta: ctas.aiJourney,
+} satisfies TimelineBlock;
 
 export const aiAutomationPractice = {
   slug: "ai-automation",
@@ -71,26 +106,7 @@ export const aiAutomationPractice = {
         ["Custom", "Any system with a REST/GraphQL API or database access"],
       ],
     },
-    {
-      type: "table",
-      title: "4-week deployment",
-      columns: ["Week", "Phase", "What happens"],
-      rows: [
-        ["1", "Discover & Map", "Audit workflows, find automation hotspots, and rank agents by ROI"],
-        ["2", "Build & Configure", "Build agents, configure orchestration, and connect your tools"],
-        [
-          "3",
-          "Test & Refine",
-          "Validate on real data, handle edge cases, and verify human-in-the-loop guardrails",
-        ],
-        [
-          "4",
-          "Deploy & Scale",
-          "Production launch with monitoring dashboards, then optimize and add agents",
-        ],
-      ],
-      note: "Simpler automations can go live in 2–3 weeks. Every deployment includes ongoing optimization, 24/7 monitoring, and a dedicated success partner.",
-    },
+    aiDeploymentTimeline,
   ],
   cta: ctas.workflowAssessment,
   secondaryCta: ctas.agentDemo,

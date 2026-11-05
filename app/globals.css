@@ -19,6 +19,7 @@
   --color-paper: #ffffff;
   --color-muted-dark: #a1a1aa; /* secondary text inside dark bands */
   --color-line-dark: #27272a; /* borders inside dark bands */
+  --color-ink-raised: #141416; /* raised tiles inside dark bands */
 }
 
 /*

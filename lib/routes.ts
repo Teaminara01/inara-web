@@ -11,6 +11,8 @@ export const routes = {
   practice: (practice: PracticeSlug) => `/services/${practice}` as Route,
   service: (practice: PracticeSlug, service: string) =>
     `/services/${practice}/${service}` as Route,
+  work: () => "/work" as const,
+  project: (slug: string) => `/work/${slug}` as Route,
   /** Contact page; `service` pre-selects the form dropdown. */
   contact: (opts?: { service?: string }) =>
     (opts?.service

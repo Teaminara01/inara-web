@@ -3,8 +3,10 @@
  * Restructuring files inside content/ then never touches app code.
  */
 import { ctas } from "./ctas";
+import { projects } from "./projects";
+import { site } from "./site";
 import { contactForm } from "./forms/contact";
-import type { Cta, ResolvedLeadForm } from "./schema";
+import type { Cta, NavLink, ResolvedLeadForm } from "./schema";
 import { getAllServiceTitles } from "./services";
 
 export { site } from "./site";
@@ -12,7 +14,14 @@ export { ctas } from "./ctas";
 export { home } from "./home";
 export { stats } from "./stats";
 export { contactForm } from "./forms/contact";
-export { servicesPage, notFoundPage } from "./pages";
+export { servicesPage, notFoundPage, workPage } from "./pages";
+export {
+  projects,
+  getProject,
+  getAllProjectParams,
+  hasPublishedProjects,
+  PLACEHOLDER_PROJECT_SLUG,
+} from "./projects";
 export {
   practices,
   getPractice,
@@ -23,6 +32,24 @@ export {
   resolveLink,
 } from "./services";
 export type * from "./schema";
+
+/**
+ * "Our Work" is linked only when projects are visible in this environment
+ * (drafts count in dev, not in production), so production never links to
+ * an empty page.
+ */
+const showWork = projects.length > 0;
+
+/** Header / mobile navigation. */
+export function getNav(): NavLink[] {
+  return showWork ? [...site.nav, site.workLink] : site.nav;
+}
+
+/** Footer "Company" column ("Our Work" goes before the last link, Contact). */
+export function getCompanyLinks(): NavLink[] {
+  const links = site.footer.companyLinks;
+  return showWork ? [...links.slice(0, -1), site.workLink, ...links.slice(-1)] : links;
+}
 
 /** Option appended to the service dropdown for undecided visitors. */
 const OTHER_OPTION = "Not sure yet / Other";

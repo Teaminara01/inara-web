@@ -79,7 +79,7 @@ outes.ts`    |
 - **Strict Separation of Concerns:** Keep presentation, business logic, analytics tracking, and API communications completely decoupled.
 - **No Backend:** Don't create API routes, Route Handlers, Server Actions, or databases for data submission. All forms go through WhatsApp (`.claude\BACKEND.md`) unless the user explicitly changes this.
 - **Content in Files, Not JSX:** All user-visible copy, contact details, nav, CTAs, and SEO metadata come from `content\*.ts` through `@/content`. Never hard-code them in components (`.claude\CONTENT.md`).
-- **Content Alignment:** Keep all service definitions, agency copy, and tech stacks aligned with `content-info\inara-ai-services.md` (see `.claude\services.md`). Never invent stats, clients, or testimonials. Track-record numbers are placeholders until the user supplies them.
+- **Content Alignment:** Keep all service definitions, agency copy, and tech stacks aligned with `content-info\inara-ai-services.md` (see `.claude\services.md`). Never invent stats, clients, or testimonials. Track-record numbers are placeholders until the user supplies them. Client projects are published only with real, client-approved details. Sample projects stay `draft: true` (dev-only).
 - **Brand Alignment:** Use only the palette and fonts in `.claude\STYLE_GUIDE.md`, exposed as Tailwind v4 tokens (no hard-coded hex in components). Never put yellow text on white.
 - **Dark Mode:** Every surface and text colour must use the theme-aware tokens (`bg-canvas`, `bg-card`, `text-fg`, `border-line`, `text-muted`). `ink`/`paper` are fixed colours, for text on yellow and always-dark bands only. Check new UI in both modes.
 

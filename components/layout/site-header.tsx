@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { site } from "@/content";
+import { getNav, site } from "@/content";
 import { ButtonLink } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
 import { Logo } from "@/components/ui/logo";
@@ -8,6 +8,7 @@ import { ThemeToggle } from "./theme-toggle";
 
 /** Sticky site header. Nav items come from content/site.ts → nav. */
 export function SiteHeader() {
+  const nav = getNav();
   return (
     <header className="sticky top-0 z-40 border-b border-line bg-canvas/90 backdrop-blur supports-[backdrop-filter]:bg-canvas/80">
       <a
@@ -21,7 +22,7 @@ export function SiteHeader() {
 
         <nav aria-label={site.ui.mainNav} className="hidden lg:block">
           <ul className="flex items-center gap-8 text-sm font-medium">
-            {site.nav.map((item) => (
+            {nav.map((item) => (
               <li key={item.href}>
                 <Link
                   href={item.href}
@@ -39,7 +40,7 @@ export function SiteHeader() {
           <ButtonLink href={site.headerCta.href} variant="inverse" className="max-sm:hidden">
             {site.headerCta.label}
           </ButtonLink>
-          <MobileNav items={site.nav} cta={site.headerCta} labels={{ open: site.ui.openMenu, close: site.ui.closeMenu }} />
+          <MobileNav items={nav} cta={site.headerCta} labels={{ open: site.ui.openMenu, close: site.ui.closeMenu }} />
         </div>
       </Container>
     </header>

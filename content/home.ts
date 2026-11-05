@@ -4,6 +4,7 @@
  */
 import { routes } from "@/lib/routes";
 import { ctas } from "./ctas";
+import { aiDeploymentTimeline } from "./services/ai-automation/practice";
 import type { HomeContent } from "./schema";
 
 export const home = {
@@ -49,6 +50,7 @@ export const home = {
         },
       ],
     },
+    { type: "timeline", block: aiDeploymentTimeline },
     { type: "stats" },
     {
       type: "cta",

@@ -35,6 +35,8 @@ export const site = {
     { label: "All services", href: routes.services() },
   ],
 
+  workLink: { label: "Our Work", href: routes.work() },
+
   headerCta: { label: "Contact us", href: routes.contact() },
 
   footer: {
@@ -70,5 +72,6 @@ export const site = {
     ctaHeading: "Ready to get started?",
     themeToDark: "Switch to dark mode",
     themeToLight: "Switch to light mode",
+    draft: "Draft · sample data",
   },
 } satisfies SiteContent;
