@@ -23,6 +23,8 @@ export type Seo = {
 export type NavLink = {
   label: string;
   href: Route;
+  /** Adds the glowing, twinkling star that sweeps across the link. */
+  highlight?: boolean;
 };
 
 export type PracticeSlug = "development" | "digital-marketing" | "ai-automation";
@@ -187,6 +189,18 @@ export type SiteContent = {
 
 export type WhyItem = { title: string; text: string };
 
+/** Icons for the hero agent diagram (components/ui/icons.tsx). */
+export type AgentIcon = "eye" | "brain" | "branch" | "zap" | "refresh" | "plug";
+
+/** Hero visual: centre tile + nodes in a circle, highlighted one by one. */
+export type AgentLoopVisual = {
+  center: string;
+  /** Read by screen readers instead of the diagram. */
+  ariaLabel: string;
+  /** Clockwise from the top. 6 nodes fit best. */
+  nodes: { label: string; icon: AgentIcon }[];
+};
+
 export type HomeSection =
   | {
       type: "hero";
@@ -195,6 +209,7 @@ export type HomeSection =
       body: string;
       primaryCta: Cta;
       secondaryCta: { label: string; href: Route };
+      visual: AgentLoopVisual;
     }
   | { type: "practices"; title: string; intro: string }
   | { type: "why"; title: string; items: WhyItem[] }

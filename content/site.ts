@@ -31,7 +31,7 @@ export const site = {
   nav: [
     { label: "Development", href: routes.practice("development") },
     { label: "Digital Marketing", href: routes.practice("digital-marketing") },
-    { label: "AI & Automation", href: routes.practice("ai-automation") },
+    { label: "AI & Automation", href: routes.practice("ai-automation"), highlight: true },
     { label: "All services", href: routes.services() },
   ],
 

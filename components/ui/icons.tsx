@@ -109,6 +109,69 @@ export function ExternalLinkIcon(props: IconProps) {
   );
 }
 
+export function EyeIcon(props: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" {...stroke} {...defaults} {...props}>
+      <path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12Z" />
+      <circle cx="12" cy="12" r="3" />
+    </svg>
+  );
+}
+
+export function BrainIcon(props: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" {...stroke} {...defaults} {...props}>
+      <path d="M12 5a3 3 0 0 0-5.9-.8A3 3 0 0 0 3.5 8a3.5 3.5 0 0 0 .6 5.6A3.5 3.5 0 0 0 8 19a3 3 0 0 0 4 1.5V5Z" />
+      <path d="M12 5a3 3 0 0 1 5.9-.8A3 3 0 0 1 20.5 8a3.5 3.5 0 0 1-.6 5.6A3.5 3.5 0 0 1 16 19a3 3 0 0 1-4 1.5" />
+      <path d="M8 9.5a2 2 0 0 1 2 2M16 9.5a2 2 0 0 0-2 2M9 15h1.5M15 15h-1.5" />
+    </svg>
+  );
+}
+
+export function BranchIcon(props: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" {...stroke} {...defaults} {...props}>
+      <circle cx="6" cy="19" r="2.2" />
+      <circle cx="18" cy="6" r="2.2" />
+      <path d="M6 3v13.8M18 8.2c0 5-6.5 4-11 9" />
+    </svg>
+  );
+}
+
+export function ZapIcon(props: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" {...stroke} {...defaults} {...props}>
+      <path d="M13 2 4 14h7l-1 8 9-12h-7l1-8Z" />
+    </svg>
+  );
+}
+
+export function RefreshIcon(props: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" {...stroke} {...defaults} {...props}>
+      <path d="M20 11a8 8 0 0 0-14.7-4.3L3 9M3 4v5h5M4 13a8 8 0 0 0 14.7 4.3L21 15M21 20v-5h-5" />
+    </svg>
+  );
+}
+
+export function PlugIcon(props: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" {...stroke} {...defaults} {...props}>
+      <path d="M9 2v5M15 2v5M6 7h12v4a6 6 0 0 1-12 0V7ZM12 17v5" />
+    </svg>
+  );
+}
+
+export function ChipIcon(props: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" {...stroke} {...defaults} {...props}>
+      <rect x="5" y="5" width="14" height="14" rx="3" />
+      <rect x="9" y="9" width="6" height="6" rx="1.5" />
+      <path d="M9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3" />
+    </svg>
+  );
+}
+
 export function SunIcon(props: IconProps) {
   return (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" {...defaults} {...props}>

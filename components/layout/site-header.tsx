@@ -3,6 +3,7 @@ import { getNav, site } from "@/content";
 import { ButtonLink } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
 import { Logo } from "@/components/ui/logo";
+import { NavStar } from "@/components/ui/nav-star";
 import { MobileNav } from "./mobile-nav";
 import { ThemeToggle } from "./theme-toggle";
 
@@ -28,7 +29,14 @@ export function SiteHeader() {
                   href={item.href}
                   className="underline-offset-8 decoration-brand decoration-2 hover:underline"
                 >
-                  {item.label}
+                  {item.highlight ? (
+                    <span className="relative [text-shadow:0_0_14px_color-mix(in_oklab,var(--color-brand)_75%,transparent)]">
+                      {item.label}
+                      <NavStar />
+                    </span>
+                  ) : (
+                    item.label
+                  )}
                 </Link>
               </li>
             ))}

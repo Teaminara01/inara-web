@@ -5,6 +5,7 @@ import { useEffect, useId, useRef, useState } from "react";
 import type { NavLink } from "@/content/schema";
 import { buttonClasses } from "@/components/ui/button";
 import { CloseIcon, MenuIcon } from "@/components/ui/icons";
+import { NavStar } from "@/components/ui/nav-star";
 import { cn } from "@/lib/utils";
 
 type MobileNavProps = {
@@ -62,7 +63,14 @@ export function MobileNav({ items, cta, labels }: MobileNavProps) {
                   onClick={close}
                   className="block rounded-xl px-3 py-3 text-lg font-medium hover:bg-surface"
                 >
-                  {item.label}
+                  {item.highlight ? (
+                    <span className="relative [text-shadow:0_0_14px_color-mix(in_oklab,var(--color-brand)_75%,transparent)]">
+                      {item.label}
+                      <NavStar />
+                    </span>
+                  ) : (
+                    item.label
+                  )}
                 </Link>
               </li>
             ))}

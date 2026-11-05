@@ -21,6 +21,21 @@ export const home = {
       body: "Inara AI designs and builds digital products, grows them with performance marketing, and runs them with AI agents that work alongside your team inside the systems you already use.",
       primaryCta: ctas.contact,
       secondaryCta: { label: "Explore our services", href: routes.services() },
+      // Agent loop from the brief (Perceive → Reason → Decide → Act → Learn),
+      // plus Integrate (connects to your existing systems).
+      visual: {
+        center: "AI Agent",
+        ariaLabel:
+          "AI agent loop: Perceive, Reason, Decide, Act, Learn, and Integrate with your existing systems.",
+        nodes: [
+          { label: "Perceive", icon: "eye" },
+          { label: "Reason", icon: "brain" },
+          { label: "Decide", icon: "branch" },
+          { label: "Act", icon: "zap" },
+          { label: "Learn", icon: "refresh" },
+          { label: "Integrate", icon: "plug" },
+        ],
+      },
     },
     {
       type: "practices",

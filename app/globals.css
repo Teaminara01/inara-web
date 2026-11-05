@@ -36,6 +36,7 @@
   --danger: #b91c1c;
   --pattern-dot: rgb(0 0 0 / 0.13);
   --glow-color: rgb(254 215 0 / 0.16);
+  --agent-active: var(--color-brand-orange-deep);
   color-scheme: light;
 }
 
@@ -49,6 +50,7 @@
   --danger: #f87171;
   --pattern-dot: rgb(255 255 255 / 0.09);
   --glow-color: rgb(254 215 0 / 0.09);
+  --agent-active: var(--color-brand);
   color-scheme: dark;
 }
 
@@ -73,8 +75,125 @@
 }
 
 /* ------------------------------------------------------------------ */
+/* Animations: used as animate-float-soft, animate-agent-node, …       */
+/* ------------------------------------------------------------------ */
+@theme {
+  /* Hero agent diagram: gentle float (mouse tilt is layered on top). */
+  --animate-float-soft: float-soft 7s ease-in-out infinite;
+  /* Hero agent diagram: slow ring rotation. */
+  --animate-spin-slow: spin-slow 60s linear infinite;
+  /*
+   * Active-node cycle: one node lit at a time. Duration = nodes × 1.5s
+   * (6 × 1.5 = 9s); each node gets animation-delay = index × 1.5s.
+   */
+  --animate-agent-node: agent-node 9s ease-in-out infinite;
+  --animate-agent-label: agent-label 9s ease-in-out infinite;
+  /* Twinkling stars around the hero diagram. */
+  --animate-star-twinkle: star-twinkle 3s ease-in-out infinite;
+  /* Nav star: sweeps left → right, then pauses (one pass every 4s). */
+  --animate-nav-star-sweep: nav-star-sweep 4s ease-in-out infinite;
+  /* Nav star: scale/rotate shimmer while it travels. */
+  --animate-twinkle: twinkle 0.9s ease-in-out infinite alternate;
+
+  @keyframes spin-slow {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes float-soft {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  /* Lit for the first ~1/6 of the cycle (one node's turn), then idle. */
+  @keyframes agent-node {
+    0%,
+    100% {
+      transform: scale(1);
+      border-color: var(--line);
+      box-shadow: 0 6px 20px -8px rgb(0 0 0 / 0.18);
+    }
+    4%,
+    13% {
+      transform: scale(1.12);
+      border-color: var(--color-brand);
+      box-shadow:
+        0 0 0 4px rgb(254 215 0 / 0.25),
+        0 0 42px 4px rgb(254 215 0 / 0.55);
+    }
+    18% {
+      transform: scale(1);
+      border-color: var(--line);
+      box-shadow: 0 6px 20px -8px rgb(0 0 0 / 0.18);
+    }
+  }
+
+  @keyframes agent-label {
+    0%,
+    18%,
+    100% {
+      color: var(--muted);
+    }
+    4%,
+    13% {
+      color: var(--agent-active);
+    }
+  }
+
+  @keyframes star-twinkle {
+    0%,
+    100% {
+      opacity: 0;
+      transform: scale(0.3) rotate(0deg);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1) rotate(90deg);
+    }
+  }
+
+  @keyframes nav-star-sweep {
+    0% {
+      transform: translateX(-12%);
+      opacity: 0;
+    }
+    8% {
+      opacity: 1;
+    }
+    48% {
+      opacity: 1;
+    }
+    56%,
+    100% {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+  }
+
+  @keyframes twinkle {
+    0% {
+      transform: scale(0.6) rotate(0deg);
+    }
+    100% {
+      transform: scale(1.15) rotate(90deg);
+    }
+  }
+}
+
+/* ------------------------------------------------------------------ */
 /* Decorative utilities                                                */
 /* ------------------------------------------------------------------ */
+
+/* 3D helper (hero agent diagram). */
+@utility preserve-3d {
+  transform-style: preserve-3d;
+}
 
 /* Dot-grid background. Colour follows --pattern-dot (theme/band aware). */
 @utility pattern-dots {
