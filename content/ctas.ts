@@ -12,5 +12,9 @@ export const ctas = {
     service: "Free workflow assessment and ROI estimate",
   },
   agentDemo: { label: "Schedule a live agent demo", service: "Live agent demo" },
+  aiJourney: {
+    label: "Start Your AI Journey",
+    service: "Free workflow assessment and ROI estimate",
+  },
   contact: { label: "Contact Inara AI" },
 } satisfies Record<string, Cta>;

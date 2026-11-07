@@ -80,6 +80,28 @@ Use these tokens (`bg-brand`, `text-ink`, `font-display`). Don't hard-code hex v
   - Radius and colour live in `globals.css` (the `cursor-glow` utility and `--glow-color`, set per theme).
   - It is off on touch devices and with reduced motion, and never blocks clicks.
 
+## Motion: 3D hero sparkle & nav star
+
+- **Hero agent diagram** (`components/effects/hero-agent-orbit.tsx`, home hero):
+  - A glossy yellow "AI Agent" tile in the centre, with six capability nodes (Perceive, Reason, Decide, Act, Learn, Integrate) on a dashed ring.
+  - It is shown beside the text on lg+ and below it on mobile. Everything is sized in container units, so it scales with its column.
+  - **3D:** the centre tile and the nodes sit at different depths (`translateZ`), and the scene tilts toward the mouse.
+  - **Motion:**
+    - Nodes light up one at a time (`animate-agent-node` and `animate-agent-label`, staggered 1.5s each).
+    - The outer ring turns slowly (`animate-spin-slow`).
+    - The scene floats (`animate-float-soft`).
+    - 13 stars twinkle around it (`animate-star-twinkle`).
+  - **Edit:** labels and icons live in `content/home.ts` → `hero.visual`. Star positions, the orbit radius and the tilt strength are constants at the top of the component.
+  - If you change the number of nodes, keep `STEP` × node count in line with the `9s` durations in `globals.css`.
+  - It pauses off-screen, stays static with reduced motion, and doesn't tilt on touch devices. Screen readers get `visual.ariaLabel`.
+  - Active label colour: `--agent-active`, which is deep orange in light mode and yellow in dark mode.
+- **Nav star** (`components/ui/nav-star.tsx`):
+  - A small glowing sparkle sweeps left → right across a nav label every 4s, twinkling as it goes, and the label gets a soft yellow glow.
+  - Turn it on for any nav item with `highlight: true` in `content/site.ts`. It's currently on "AI & Automation".
+  - Timing lives in `globals.css`: `--animate-nav-star-sweep` (the 4s loop; the keyframe percentages set the pause) and `--animate-twinkle`.
+  - It's hidden for reduced motion.
+- Use these effects sparingly: at most one highlighted nav item, and the agent diagram on the home hero only.
+
 ## Typography
 
 | Font                         | Role                                            | Notes |

@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { practices } from "@/content";
+import { hasPublishedProjects, practices, projects } from "@/content";
 import { routes } from "@/lib/routes";
 import { absoluteUrl } from "@/lib/seo";
 
@@ -16,6 +16,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
         priority: 0.7,
       })),
     ]),
+    // Client work: only real (non-draft) projects are listed.
+    ...(hasPublishedProjects
+      ? [
+          { path: routes.work(), priority: 0.8 },
+          ...projects
+            .filter((p) => !p.draft)
+            .map((p) => ({ path: routes.project(p.slug), priority: 0.6 })),
+        ]
+      : []),
   ];
 
   return paths.map(({ path, priority }) => ({ url: absoluteUrl(path), priority }));

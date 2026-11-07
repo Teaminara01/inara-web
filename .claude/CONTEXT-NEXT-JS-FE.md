@@ -60,6 +60,7 @@ components/
   sections/               # HomeHero, PracticeGrid, WhyInara, StatsBand, CtaBand, PageHero, ServiceGrid, RelatedLinks
   layout/                 # SiteHeader, MobileNav + ThemeToggle ("use client"), SiteFooter, WhatsAppFloat
   effects/cursor-glow.tsx # "use client" mouse-follow glow (rAF + CSS vars)
+  effects/hero-agent-orbit.tsx # "use client" 3D AI-agent loop diagram + twinkling stars (home hero)
   forms/whatsapp-lead-form.tsx  # "use client" leaf
   seo/json-ld.tsx
 content/                  # see .claude/CONTENT.md

@@ -11,12 +11,14 @@ type PageHeroProps = {
   breadcrumbs: Crumb[];
   eyebrow?: string;
   title: string;
+  /** Breadcrumb label for this page; defaults to `title`. */
+  current?: string;
   lead: string;
   children?: ReactNode;
 };
 
 /** Inner-page hero (practice/service/contact) with breadcrumbs. */
-export function PageHero({ breadcrumbs, eyebrow, title, lead, children }: PageHeroProps) {
+export function PageHero({ breadcrumbs, eyebrow, title, current, lead, children }: PageHeroProps) {
   return (
     <section className="theme-dark relative isolate overflow-hidden bg-ink text-paper">
       <PatternBackdrop />
@@ -33,7 +35,7 @@ export function PageHero({ breadcrumbs, eyebrow, title, lead, children }: PageHe
               </li>
             ))}
             <li aria-current="page" className="text-paper">
-              {title}
+              {current ?? title}
             </li>
           </ol>
         </nav>

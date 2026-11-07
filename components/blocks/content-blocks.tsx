@@ -7,6 +7,7 @@ import type { ContentBlock } from "@/content";
 import { CheckIcon, SparkleIcon } from "@/components/ui/icons";
 import { RichText } from "@/components/ui/rich-text";
 import { cn } from "@/lib/utils";
+import { TimelineBlock } from "./timeline-block";
 
 export function ContentBlocks({ blocks }: { blocks: ContentBlock[] }) {
   return (
@@ -34,6 +35,8 @@ function Block({ block }: { block: ContentBlock }) {
       return <CalloutBlock {...block} />;
     case "text":
       return <TextBlock {...block} />;
+    case "timeline":
+      return <TimelineBlock {...block} />;
     default: {
       const unhandled: never = block;
       return unhandled;

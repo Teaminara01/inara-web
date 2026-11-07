@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Route } from "next";
 import type { ComponentProps, ReactNode } from "react";
 import { cn } from "@/lib/utils";
+import { ArrowRightIcon } from "./icons";
 
 const base =
   "inline-flex items-center justify-center gap-2 rounded-full font-semibold transition-colors duration-200 disabled:pointer-events-none disabled:opacity-60";
@@ -44,6 +45,24 @@ export function ButtonLink({
   return (
     <Link href={href} className={cn(buttonClasses(variant, size), className)}>
       {children}
+    </Link>
+  );
+}
+
+/**
+ * White pill with a round black arrow badge, for CTAs on dark bands
+ * (e.g. "Start Your AI Journey").
+ */
+export function ArrowPillLink({ href, children }: { href: Route; children: ReactNode }) {
+  return (
+    <Link
+      href={href}
+      className="group inline-flex items-center gap-4 rounded-full border-2 border-paper bg-paper py-1.5 pr-1.5 pl-7 font-semibold text-ink transition-colors hover:border-brand hover:bg-brand"
+    >
+      {children}
+      <span className="flex size-11 items-center justify-center rounded-full bg-ink text-paper transition-transform group-hover:translate-x-0.5">
+        <ArrowRightIcon className="size-5" />
+      </span>
     </Link>
   );
 }

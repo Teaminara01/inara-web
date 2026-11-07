@@ -31,9 +31,11 @@ export const site = {
   nav: [
     { label: "Development", href: routes.practice("development") },
     { label: "Digital Marketing", href: routes.practice("digital-marketing") },
-    { label: "AI & Automation", href: routes.practice("ai-automation") },
+    { label: "AI & Automation", href: routes.practice("ai-automation"), highlight: true },
     { label: "All services", href: routes.services() },
   ],
+
+  workLink: { label: "Our Work", href: routes.work() },
 
   headerCta: { label: "Contact us", href: routes.contact() },
 
@@ -70,5 +72,6 @@ export const site = {
     ctaHeading: "Ready to get started?",
     themeToDark: "Switch to dark mode",
     themeToLight: "Switch to light mode",
+    draft: "Draft · sample data",
   },
 } satisfies SiteContent;

@@ -46,6 +46,7 @@ Full copy: `content-info/inara-ai-services.md` (see `.claude/services.md` for ho
 | `/services/ai-automation`               | §3 overview, agent loop, foundations, integrations, 4-week deployment |
 | `/services/ai-automation/[service]`     | §3.1–3.4                                                             |
 | `/contact`                              | Contact details + WhatsApp lead form (`content/forms/contact.ts`)    |
+| `/work`, `/work/[slug]`                 | Client projects (`content/projects/`), linked in nav only once a real project is published |
 
 Confirm this map with the user before scaffolding routes.
 
@@ -72,6 +73,7 @@ Copy any asset that ships into `public/brand/` and don't import it from `content
 - **Track record numbers** are placeholders in the services file (`[Projects delivered] · [Clients served] · …`). Never invent figures. Leave the section out or keep it as a visible TODO until real numbers are supplied.
 - **Footer copy mismatch:** the brand sheet footer lists "Social Media Marketing | SEO | Performance Marketing | Website Designing" and uses an `https://inara.ai` email, which reflects the older marketing-only positioning. Confirm whether the footer should list the three current practices instead.
 - **Production domain** is unknown, so `metadataBase`, canonical URLs, and the sitemap cannot be finalized yet.
+- **Client projects:** only fictional `draft` samples exist (dev-only). Needed for each real project: client name (with permission), industry, year, services, challenge, solution, real results, stack, an optional testimonial, and a cover image or screenshots.
 - **Boomstad font files** are not in the repo. A licensed web-font file is needed (see STYLE_GUIDE).
 - **WhatsApp number for leads:** forms submit through WhatsApp (decided, see `.claude/BACKEND.md`). Confirm which phone number is the WhatsApp Business number, then store it in `content/site.ts`.
 - **Client dashboard** scope, auth provider, and backend are undefined.

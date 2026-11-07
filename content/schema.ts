@@ -23,6 +23,8 @@ export type Seo = {
 export type NavLink = {
   label: string;
   href: Route;
+  /** Adds the glowing, twinkling star that sweeps across the link. */
+  highlight?: boolean;
 };
 
 export type PracticeSlug = "development" | "digital-marketing" | "ai-automation";
@@ -50,6 +52,20 @@ export type Cta = {
 export type Feature = { label: string; text: string };
 export type Step = { title: string; text?: string };
 
+/** Icons available to timeline steps (components/ui/icons.tsx). */
+export type TimelineIcon = "search" | "code" | "flask" | "rocket";
+
+export type TimelineBlock = {
+  type: "timeline";
+  /** Heading text before the highlighted part. */
+  title: string;
+  /** Highlighted end of the heading, e.g. "4 Simple Steps". */
+  highlight?: string;
+  items: { label: string; title: string; text: string; icon: TimelineIcon }[];
+  note?: string;
+  cta?: Cta;
+};
+
 export type ContentBlock =
   /** Grid of "label: description" cards (e.g. "What's included"). */
   | { type: "features"; title: string; intro?: string; items: Feature[] }
@@ -64,7 +80,9 @@ export type ContentBlock =
   /** Short highlighted note (timelines, guarantees). */
   | { type: "callout"; title: string; body: string }
   /** Plain paragraph with a heading. */
-  | { type: "text"; title: string; body: string };
+  | { type: "text"; title: string; body: string }
+  /** Horizontal step timeline on a dark panel (e.g. 4-week deployment). */
+  | TimelineBlock;
 
 /* ------------------------------------------------------------------ */
 /* Services                                                            */
@@ -134,6 +152,8 @@ export type SiteContent = {
     location: string;
   };
   nav: NavLink[];
+  /** Added to nav and footer only when at least one project is published. */
+  workLink: NavLink;
   headerCta: { label: string; href: Route };
   footer: {
     blurb: string;
@@ -163,10 +183,23 @@ export type SiteContent = {
     ctaHeading: string;
     themeToDark: string;
     themeToLight: string;
+    draft: string;
   };
 };
 
 export type WhyItem = { title: string; text: string };
+
+/** Icons for the hero agent diagram (components/ui/icons.tsx). */
+export type AgentIcon = "eye" | "brain" | "branch" | "zap" | "refresh" | "plug";
+
+/** Hero visual: centre tile + nodes in a circle, highlighted one by one. */
+export type AgentLoopVisual = {
+  center: string;
+  /** Read by screen readers instead of the diagram. */
+  ariaLabel: string;
+  /** Clockwise from the top. 6 nodes fit best. */
+  nodes: { label: string; icon: AgentIcon }[];
+};
 
 export type HomeSection =
   | {
@@ -176,10 +209,13 @@ export type HomeSection =
       body: string;
       primaryCta: Cta;
       secondaryCta: { label: string; href: Route };
+      visual: AgentLoopVisual;
     }
   | { type: "practices"; title: string; intro: string }
   | { type: "why"; title: string; items: WhyItem[] }
   | { type: "stats" }
+  /** Renders a timeline block (shared with a practice page). */
+  | { type: "timeline"; block: TimelineBlock }
   | { type: "cta"; title: string; items: { practice: string; cta: Cta }[] };
 
 export type HomeContent = {
@@ -193,6 +229,63 @@ export type StatsContent = {
   enabled: boolean;
   title: string;
   items: { label: string; value: string | null }[];
+};
+
+/* ------------------------------------------------------------------ */
+/* Projects (client work, see content/projects/)                       */
+/* ------------------------------------------------------------------ */
+
+export type Project = {
+  /** URL segment: /work/<slug>. Keep in sync with the filename. */
+  slug: string;
+  /**
+   * Draft projects show in `npm run dev` only. They are excluded from
+   * production builds, the sitemap, and the nav.
+   */
+  draft?: boolean;
+  client: string;
+  title: string;
+  /** One or two sentences for cards and the meta description. */
+  summary: string;
+  industry: string;
+  year: string;
+  practices: PracticeSlug[];
+  /** Services delivered, as links to service pages. */
+  services: ContentLink[];
+  /** Cover image in public/, ~1600×1000 (16:10). */
+  cover: { src: string; alt: string };
+  challenge: string;
+  solution: string;
+  /** Headline numbers. Only real, client-approved figures. */
+  results?: { value: string; label: string }[];
+  stack?: string[];
+  testimonial?: { quote: string; author: string; role: string };
+  /** Live site, if public. */
+  url?: string;
+  seo?: Seo;
+};
+
+export type WorkPageContent = {
+  seo: Required<Seo>;
+  eyebrow: string;
+  title: string;
+  lead: string;
+  filterAll: string;
+  emptyTitle: string;
+  emptyBody: string;
+  labels: {
+    client: string;
+    industry: string;
+    year: string;
+    services: string;
+    challenge: string;
+    solution: string;
+    results: string;
+    stack: string;
+    visit: string;
+    viewProject: string;
+    moreWork: string;
+  };
 };
 
 /* ------------------------------------------------------------------ */

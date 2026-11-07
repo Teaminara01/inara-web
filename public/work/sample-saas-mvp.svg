@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" width="1600" height="1000">
+<defs>
+  <pattern id="dots" width="28" height="28" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.6" fill="#ffffff" opacity="0.09"/></pattern>
+  <radialGradient id="glow" cx="70%" cy="30%" r="60%"><stop offset="0" stop-color="#fec60d" stop-opacity="0.28"/><stop offset="1" stop-color="#fec60d" stop-opacity="0"/></radialGradient>
+  <linearGradient id="fade" x1="0" y1="0" x2="0" y2="1"><stop offset="0.55" stop-color="#0a0a0a" stop-opacity="0"/><stop offset="1" stop-color="#0a0a0a" stop-opacity="0.9"/></linearGradient>
+</defs>
+<rect width="1600" height="1000" fill="#0a0a0a"/>
+<rect width="1600" height="1000" fill="url(#dots)"/>
+<rect width="1600" height="1000" fill="url(#glow)"/>
+<path fill="#fec60d" opacity="0.18" d="M1420 50 C1446.4 143.6 1446.4 143.6 1540 170 C1446.4 196.4 1446.4 196.4 1420 290 C1393.6 196.4 1393.6 196.4 1300 170 C1393.6 143.6 1393.6 143.6 1420 50Z"/>
+<rect x="160" y="130" width="1280" height="780" rx="32" fill="#16161a" stroke="#2a2a2e" stroke-width="2"/>
+<rect x="160" y="130" width="240" height="780" rx="32" fill="#111113"/>
+<path fill="#fed700" opacity="1.0" d="M220 178 C224.84 195.16 224.84 195.16 242 200 C224.84 204.84 224.84 204.84 220 222 C215.16 204.84 215.16 204.84 198 200 C215.16 195.16 215.16 195.16 220 178Z"/>
+<rect x="200" y="270" width="150" height="14" rx="7" fill="#2a2a2e"/>
+<rect x="200" y="330" width="120" height="14" rx="7" fill="#fed700"/>
+<rect x="200" y="390" width="150" height="14" rx="7" fill="#2a2a2e"/>
+<rect x="200" y="450" width="150" height="14" rx="7" fill="#2a2a2e"/>
+<rect x="200" y="510" width="150" height="14" rx="7" fill="#2a2a2e"/>
+<rect x="200" y="570" width="150" height="14" rx="7" fill="#2a2a2e"/>
+<rect x="200" y="630" width="150" height="14" rx="7" fill="#2a2a2e"/>
+<rect x="450" y="180" width="290" height="140" rx="20" fill="#111113" stroke="#2a2a2e" stroke-width="2"/>
+<rect x="474" y="210" width="110" height="12" rx="7" fill="#2a2a2e"/>
+<rect x="474" y="246" width="187" height="40" rx="10" fill="#fed700" opacity="0.9"/>
+<rect x="770" y="180" width="290" height="140" rx="20" fill="#111113" stroke="#2a2a2e" stroke-width="2"/>
+<rect x="794" y="210" width="110" height="12" rx="7" fill="#2a2a2e"/>
+<rect x="794" y="246" width="99" height="40" rx="10" fill="#fec60d" opacity="0.9"/>
+<rect x="1090" y="180" width="290" height="140" rx="20" fill="#111113" stroke="#2a2a2e" stroke-width="2"/>
+<rect x="1114" y="210" width="110" height="12" rx="7" fill="#2a2a2e"/>
+<rect x="1114" y="246" width="39" height="40" rx="10" fill="#fdab01" opacity="0.9"/>
+<rect x="450" y="350" width="610" height="520" rx="20" fill="#111113" stroke="#2a2a2e" stroke-width="2"/>
+<rect x="490" y="599" width="34" height="231" rx="8" fill="#fec60d" opacity="0.35"/>
+<rect x="545" y="654" width="34" height="176" rx="8" fill="#fec60d" opacity="0.35"/>
+<rect x="600" y="531" width="34" height="299" rx="8" fill="#fec60d" opacity="0.35"/>
+<rect x="655" y="478" width="34" height="352" rx="8" fill="#fec60d" opacity="0.35"/>
+<rect x="710" y="687" width="34" height="143" rx="8" fill="#fec60d" opacity="0.35"/>
+<rect x="765" y="714" width="34" height="116" rx="8" fill="#fec60d" opacity="0.35"/>
+<rect x="820" y="480" width="34" height="350" rx="8" fill="#fed700" opacity="1"/>
+<rect x="875" y="588" width="34" height="242" rx="8" fill="#fec60d" opacity="0.35"/>
+<rect x="930" y="601" width="34" height="229" rx="8" fill="#fed700" opacity="1"/>
+<rect x="985" y="622" width="34" height="208" rx="8" fill="#fec60d" opacity="0.35"/>
+<rect x="1090" y="350" width="310" height="520" rx="20" fill="#111113" stroke="#2a2a2e" stroke-width="2"/>
+<polyline points="1120,760 1148,715 1176,678 1204,656 1232,648 1260,649 1288,651 1316,644 1344,622 1372,586" fill="none" stroke="#ed6100" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="1120" y="400" width="220" height="12" rx="7" fill="#2a2a2e"/>
+<rect x="1120" y="434" width="190" height="12" rx="7" fill="#2a2a2e"/>
+<rect x="1120" y="468" width="160" height="12" rx="7" fill="#2a2a2e"/>
+<rect x="1120" y="502" width="130" height="12" rx="7" fill="#2a2a2e"/>
+<rect width="1600" height="1000" fill="url(#fade)"/>
+</svg>
