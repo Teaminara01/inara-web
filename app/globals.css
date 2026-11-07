@@ -223,6 +223,73 @@
   );
 }
 
+/*
+ * Scroll-reveal (scroll-driven animations, no JS).
+ * Elements are only hidden where the browser can animate them back in:
+ * unsupported browsers and reduced-motion users see static content.
+ * `--stagger` (a percentage) delays the start along the scroll, e.g. per column.
+ */
+@utility reveal-up {
+  @supports (animation-timeline: view()) {
+    @media (prefers-reduced-motion: no-preference) {
+      animation: reveal-up linear both;
+      animation-timeline: view();
+      animation-range: entry calc(5% + var(--stagger, 0%)) cover calc(28% + var(--stagger, 0%));
+    }
+  }
+}
+
+/* Image tile: uncovers bottom → top. Pair with `reveal-zoom` on the image. */
+@utility reveal-image {
+  @supports (animation-timeline: view()) {
+    @media (prefers-reduced-motion: no-preference) {
+      animation: reveal-image linear both;
+      animation-timeline: view();
+      animation-range: entry calc(0% + var(--stagger, 0%)) cover calc(35% + var(--stagger, 0%));
+    }
+  }
+}
+
+/* Settles from slightly zoomed in. Uses `transform`, so it stacks with Tailwind's `scale-*` hover. */
+@utility reveal-zoom {
+  @supports (animation-timeline: view()) {
+    @media (prefers-reduced-motion: no-preference) {
+      animation: reveal-zoom linear both;
+      animation-timeline: view();
+      animation-range: entry calc(0% + var(--stagger, 0%)) cover calc(45% + var(--stagger, 0%));
+    }
+  }
+}
+
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translateY(2rem);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes reveal-image {
+  from {
+    clip-path: inset(100% 0 0 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes reveal-zoom {
+  from {
+    transform: scale(1.18);
+  }
+  to {
+    transform: none;
+  }
+}
+
 @layer base {
   html {
     scroll-behavior: smooth;
