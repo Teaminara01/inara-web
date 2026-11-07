@@ -94,6 +94,14 @@
   --animate-nav-star-sweep: nav-star-sweep 4s ease-in-out infinite;
   /* Nav star: scale/rotate shimmer while it travels. */
   --animate-twinkle: twinkle 0.9s ease-in-out infinite alternate;
+  /* Brand marquee: track holds the list twice, so -50% loops seamlessly. */
+  --animate-marquee: marquee 50s linear infinite;
+
+  @keyframes marquee {
+    to {
+      transform: translateX(-50%);
+    }
+  }
 
   @keyframes spin-slow {
     to {

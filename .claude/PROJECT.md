@@ -10,9 +10,8 @@
 | Tagline (logo)   | **We make it matter**                                          |
 | Positioning line | **Build. Grow. Automate.**                                     |
 | AI practice line | **AI handles the analysis. Your people keep the judgment.**    |
-| Contact email    | admin@https://inara.ai                                             |
-| Contact phones   | +91 96743 41297 · +91 9030 73304                                    |
-| Market           | India-based agency (+91), selling to startups, SMBs, and enterprises |
+| Contact details  | Email, phones, WhatsApp, office address: `content/site.ts` only (source: brochure contact slide) |
+| Market           | Kolkata-based agency (founded April 2024), selling to startups, SMBs, and enterprises |
 
 **One-line pitch:** Inara AI designs and builds digital products, grows them with performance marketing, and runs them with AI agents that work alongside your team inside the systems you already use.
 
@@ -21,7 +20,7 @@
 Full copy: `content-info/inara-ai-services.md` (see `.claude/services.md` for how to use it).
 
 1. **Development**: Web Development, Web App Development, Mobile App Development, E-commerce Development, SaaS Development
-2. **Digital Marketing**: SEO & Search Marketing, Social Media Marketing, CRO, Content Marketing, PPC, YouTube Marketing
+2. **Digital Marketing**: SEO & Search Marketing, Social Media Marketing, CRO, Content Marketing, PPC, YouTube Marketing, Strategy Branding & Design, Content & Film Production, Influencer Marketing, PR & Communications (last four from the brochure)
 3. **AI & Intelligent Automation**: Workflow Automation, Conversational AI, Business Intelligence, Multi-Agent Orchestration
 
 ## What the website must do
@@ -45,8 +44,9 @@ Full copy: `content-info/inara-ai-services.md` (see `.claude/services.md` for ho
 | `/services/digital-marketing/[service]` | §2.1–2.6                                                             |
 | `/services/ai-automation`               | §3 overview, agent loop, foundations, integrations, 4-week deployment |
 | `/services/ai-automation/[service]`     | §3.1–3.4                                                             |
+| `/about`                                | Brochure: journey, DNA, what we do, why Inara, process, stats, clients, partners (`content/about.ts`) |
 | `/contact`                              | Contact details + WhatsApp lead form (`content/forms/contact.ts`)    |
-| `/work`, `/work/[slug]`                 | Client projects (`content/projects/`), linked in nav only once a real project is published |
+| `/work`, `/work/[slug]`                 | Brochure case studies (`content/projects/`) + creatives gallery (`content/creatives.ts`) |
 
 Confirm this map with the user before scaffolding routes.
 
@@ -70,10 +70,11 @@ Copy any asset that ships into `public/brand/` and don't import it from `content
 
 ## Open items / need confirmation from the user
 
-- **Track record numbers** are placeholders in the services file (`[Projects delivered] · [Clients served] · …`). Never invent figures. Leave the section out or keep it as a visible TODO until real numbers are supplied.
+- **Track record numbers** come from the brochure (5+ years, 20+ brands, 26+ success stories). Never invent figures; update `content/stats.ts` when they change.
+- **Brochure-derived items to confirm:** founder names/roles (the brochure has photos only, so they are not on the site); the new service page copy (brochure gives titles only); original artwork to replace the images cropped from the brochure slides in `public/work/`.
 - **Footer copy mismatch:** the brand sheet footer lists "Social Media Marketing | SEO | Performance Marketing | Website Designing" and uses an `https://inara.ai` email, which reflects the older marketing-only positioning. Confirm whether the footer should list the three current practices instead.
 - **Production domain** is unknown, so `metadataBase`, canonical URLs, and the sitemap cannot be finalized yet.
-- **Client projects:** only fictional `draft` samples exist (dev-only). Needed for each real project: client name (with permission), industry, year, services, challenge, solution, real results, stack, an optional testimonial, and a cover image or screenshots.
+- **Client projects:** six brochure case studies are published (Amma's Special, Neotia Getwel, Genome, Dosa Coffee, Calcutta Gin, Bonne Femme). The fictional `sample-*` drafts remain dev-only. Years are unknown for most; add them when available.
 - **Boomstad font files** are not in the repo. A licensed web-font file is needed (see STYLE_GUIDE).
 - **WhatsApp number for leads:** forms submit through WhatsApp (decided, see `.claude/BACKEND.md`). Confirm which phone number is the WhatsApp Business number, then store it in `content/site.ts`.
 - **Client dashboard** scope, auth provider, and backend are undefined.

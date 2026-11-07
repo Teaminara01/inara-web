@@ -65,8 +65,26 @@ export const home = {
         },
       ],
     },
-    { type: "timeline", block: aiDeploymentTimeline },
     { type: "stats" },
+    // Featured work + brands render as one continuous dark stretch.
+    {
+      type: "featuredWork",
+      eyebrow: "Our work",
+      title: "Crafting meaningful stories through our work",
+      intro: "Selected case studies from hospitality, food and beverage, and healthcare brands.",
+      readMore: "Read more",
+      allWork: "See all our work",
+      limit: 6,
+    },
+    {
+      type: "brands",
+      title: "Brands we've",
+      highlight: "partnered",
+      titleEnd: "with",
+      footerLabel: "{count} brands and counting — see our work",
+    },
+    { type: "partners" },
+    { type: "timeline", block: aiDeploymentTimeline },
     {
       type: "cta",
       title: "Ready to get started?",

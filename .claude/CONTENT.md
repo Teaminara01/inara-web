@@ -25,11 +25,15 @@ All website copy and business data live in **TypeScript content files under `con
 content/
   index.ts                  # barrel: the ONLY import path for pages/components → `@/content`
   schema.ts                 # all content types (SiteContent, Practice, Service, LeadForm, Seo, Cta…)
-  site.ts                   # brand, contact (email/phones/WhatsApp), nav, footer, default SEO, `ui` labels
-  pages.ts                  # copy for standalone pages (services index, 404)
+  site.ts                   # brand, contact (email/phones/WhatsApp/address), nav, footer, default SEO, `ui` labels
+  pages.ts                  # copy for standalone pages (services index, work, 404)
   ctas.ts                   # reusable CTAs, referenced by pages instead of retyping labels
   home.ts                   # home page sections, in render order
-  stats.ts                  # track-record numbers: `enabled: false` until real values exist
+  about.ts                  # /about: journey, DNA, what we do, why Inara, process, approach (from the brochure)
+  stats.ts                  # track-record numbers (brochure); `enabled: false` hides the band
+  clients.ts                # brands worked with, by industry (home + about)
+  partners.ts               # platform partners as text badges (home + about)
+  creatives.ts              # creatives gallery on /work (images in public/work/creatives/)
   projects/
     index.ts                # registry: allProjects (display order), draft filtering
     <slug>.ts               # one file per client project (cover image in public/work/)
@@ -100,7 +104,13 @@ lib/
 | Rename a CTA everywhere                 | `content/ctas.ts`                                                    |
 | Reorder home page sections              | `content/home.ts` → `sections` array order                           |
 | Add/reorder nav items                   | `content/site.ts` → `nav`                                            |
-| Show track-record numbers               | `content/stats.ts` → fill values, set `enabled: true`                |
+| Update track-record numbers             | `content/stats.ts` → edit values (set `enabled: false` to hide)      |
+| Add/remove a client brand               | `content/clients.ts` → that industry's `brands` (feeds the home marquee and About list) |
+| Show a real logo in the brand marquee   | Add a light/greyscale-friendly SVG or transparent PNG to `public/brands/`, then map it in `content/clients.ts` → `logos` (key = exact brand name). Brands without a logo render as a wordmark. |
+| Change the home "featured work" grid    | `content/home.ts` → `featuredWork` (copy, `limit`). Tiles come from published projects in `allProjects` order. |
+| Add a partner                           | `content/partners.ts` → `partners`                                    |
+| Add creatives for a brand               | Add images to `public/work/creatives/`, then an entry in `content/creatives.ts` (add `width`/`height` to every image in a group to keep natural aspect ratios) |
+| Edit the About page                     | `content/about.ts`                                                    |
 | Change a page's SEO title/description   | that page's content file → `seo`                                     |
 | Change a button/aria label ("Learn more") | `content/site.ts` → `ui`                                            |
 | Set the production domain               | `NEXT_PUBLIC_SITE_URL` in `.env.local` / hosting env                 |

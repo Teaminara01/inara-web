@@ -15,11 +15,11 @@ export const workPage = {
   seo: {
     title: "Our Work",
     description:
-      "Client projects from Inara AI across development, digital marketing, and AI & intelligent automation.",
+      "Case studies and campaign creatives from Inara AI for brands across hospitality, food and beverage, healthcare, and lifestyle.",
   },
   eyebrow: "Our Work",
-  title: "Projects we've built, grown, and automated",
-  lead: "A selection of client work across our three practices.",
+  title: "Crafting meaningful stories through our work",
+  lead: "Case studies and campaign creatives for brands across hospitality, food and beverage, healthcare, and lifestyle.",
   filterAll: "All work",
   emptyTitle: "Case studies coming soon",
   emptyBody: "We're preparing write-ups of recent client projects. In the meantime, tell us what you're working on.",
@@ -31,6 +31,8 @@ export const workPage = {
     challenge: "The challenge",
     solution: "What we did",
     results: "Results",
+    deliverables: "What we delivered",
+    gallery: "Selected work",
     stack: "Technology",
     visit: "Visit live site",
     viewProject: "View project",
