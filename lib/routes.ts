@@ -7,6 +7,7 @@ import type { PracticeSlug } from "@/content/schema";
 
 export const routes = {
   home: () => "/" as const,
+  about: () => "/about" as const,
   services: () => "/services" as const,
   practice: (practice: PracticeSlug) => `/services/${practice}` as Route,
   service: (practice: PracticeSlug, service: string) =>

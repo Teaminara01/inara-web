@@ -6,11 +6,12 @@ import { PracticeCtaBand } from "@/components/sections/cta-band";
 import { PageHero } from "@/components/sections/page-hero";
 import { RelatedLinks } from "@/components/sections/related-links";
 import { ButtonAnchor } from "@/components/ui/button";
-import { ExternalLinkIcon } from "@/components/ui/icons";
+import { CheckIcon, ExternalLinkIcon } from "@/components/ui/icons";
 import { Section } from "@/components/ui/section";
 import { ProjectCard } from "@/components/work/project-card";
 import { routes } from "@/lib/routes";
 import { absoluteUrl, toMetadata } from "@/lib/seo";
+import { cn } from "@/lib/utils";
 
 type Props = PageProps<"/work/[slug]">;
 
@@ -45,7 +46,8 @@ export default async function ProjectPage({ params }: Props) {
     { label: labels.industry, value: project.industry },
     { label: labels.year, value: project.year },
     { label: labels.services, value: practiceTitles.join(", ") },
-  ];
+  ].filter((m): m is { label: string; value: string } => Boolean(m.value));
+  const hasResults = Boolean(project.results?.length || project.outcomes?.length);
 
   return (
     <>
@@ -85,7 +87,12 @@ export default async function ProjectPage({ params }: Props) {
           <Image src={project.cover.src} alt={project.cover.alt} fill sizes="(min-width: 1152px) 1152px, 100vw" className="object-cover" />
         </div>
 
-        <dl className="mt-10 grid gap-6 rounded-3xl border border-line bg-card p-7 sm:grid-cols-2 lg:grid-cols-4">
+        <dl
+          className={cn(
+            "mt-10 grid gap-6 rounded-3xl border border-line bg-card p-7 sm:grid-cols-2",
+            meta.length === 4 ? "lg:grid-cols-4" : "lg:grid-cols-3",
+          )}
+        >
           {meta.map((m) => (
             <div key={m.label}>
               <dt className="text-xs font-semibold tracking-wide text-muted uppercase">{m.label}</dt>
@@ -107,17 +114,57 @@ export default async function ProjectPage({ params }: Props) {
           </div>
         </div>
 
-        {project.results && project.results.length > 0 && (
+        {hasResults && (
           <div className="mt-16">
             <h2 className="text-2xl sm:text-3xl">{labels.results}</h2>
-            <dl className="mt-8 grid gap-4 sm:grid-cols-3">
-              {project.results.map((r) => (
-                <div key={r.label} className="theme-dark flex flex-col rounded-3xl bg-ink p-7 text-paper dark:ring-1 dark:ring-line">
-                  <dt className="mt-2 text-sm text-muted-dark">{r.label}</dt>
-                  <dd className="order-first font-display text-4xl font-bold text-brand">{r.value}</dd>
-                </div>
+            {project.results && project.results.length > 0 && (
+              <dl className="mt-8 grid gap-4 sm:grid-cols-3">
+                {project.results.map((r) => (
+                  <div key={r.label} className="theme-dark flex flex-col rounded-3xl bg-ink p-7 text-paper dark:ring-1 dark:ring-line">
+                    <dt className="mt-2 text-sm text-muted-dark">{r.label}</dt>
+                    <dd className="order-first font-display text-4xl font-bold text-brand">{r.value}</dd>
+                  </div>
+                ))}
+              </dl>
+            )}
+            {project.outcomes && project.outcomes.length > 0 && (
+              <ul className="mt-8 grid gap-3 sm:grid-cols-2">
+                {project.outcomes.map((outcome) => (
+                  <li key={outcome} className="flex gap-3 leading-relaxed">
+                    <span className="mt-0.5 flex size-6 shrink-0 items-center justify-center rounded-full bg-brand text-ink">
+                      <CheckIcon className="size-3.5" />
+                    </span>
+                    {outcome}
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
+        )}
+
+        {project.deliverables && project.deliverables.length > 0 && (
+          <div className="mt-16">
+            <h2 className="text-2xl sm:text-3xl">{labels.deliverables}</h2>
+            <ul className="mt-6 flex flex-wrap gap-2">
+              {project.deliverables.map((item) => (
+                <li key={item} className="rounded-full border border-fg/15 bg-brand/15 px-4 py-2 text-sm font-medium">
+                  {item}
+                </li>
               ))}
-            </dl>
+            </ul>
+          </div>
+        )}
+
+        {project.gallery && project.gallery.length > 0 && (
+          <div className="mt-16">
+            <h2 className="text-2xl sm:text-3xl">{labels.gallery}</h2>
+            <ul className="mt-8 grid gap-4 sm:grid-cols-2">
+              {project.gallery.map((img) => (
+                <li key={img.src} className="relative aspect-[4/3] overflow-hidden rounded-3xl border border-line bg-surface">
+                  <Image src={img.src} alt={img.alt} fill sizes="(min-width: 640px) 50vw, 100vw" className="object-contain p-3" />
+                </li>
+              ))}
+            </ul>
           </div>
         )}
 

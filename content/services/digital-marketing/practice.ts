@@ -8,12 +8,12 @@ export const digitalMarketingPractice = {
   title: "Digital Marketing",
   navLabel: "Digital Marketing",
   intro:
-    "Data-driven programs that grow visibility, traffic, leads, and revenue, with transparent reporting on every metric.",
+    "Data-driven programs that grow visibility, traffic, leads, and revenue, backed by in-house branding, content and film production, influencer, and PR teams, with transparent reporting on every metric.",
   blocks: [],
   cta: ctas.freeAudit,
   seo: {
     title: "Digital Marketing Services",
     description:
-      "SEO, social media, CRO, content, PPC, and YouTube programs focused on measurable growth, with transparent reporting on every metric.",
+      "SEO, social media, CRO, content, PPC, YouTube, branding, film production, influencer marketing, and PR, focused on measurable growth.",
   },
 } satisfies PracticeInfo;

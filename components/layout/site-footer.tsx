@@ -3,7 +3,7 @@ import type { ReactNode } from "react";
 import { cacheLife } from "next/cache";
 import { getCompanyLinks, practices, site } from "@/content";
 import { Container } from "@/components/ui/container";
-import { MailIcon, PhoneIcon, WhatsAppIcon } from "@/components/ui/icons";
+import { MailIcon, MapPinIcon, PhoneIcon, WhatsAppIcon } from "@/components/ui/icons";
 import { Logo } from "@/components/ui/logo";
 import { routes } from "@/lib/routes";
 import { buildWhatsAppUrl } from "@/lib/whatsapp";
@@ -65,6 +65,18 @@ export function SiteFooter() {
               <WhatsAppIcon className="size-4 text-brand" />
               {contact.whatsapp.label}
             </a>
+          </li>
+          <li>
+            <address className="inline-flex gap-2 not-italic text-muted-dark">
+              <MapPinIcon className="mt-0.5 size-4 shrink-0 text-brand" />
+              <span>
+                {contact.address.lines.map((line) => (
+                  <span key={line} className="block">
+                    {line}
+                  </span>
+                ))}
+              </span>
+            </address>
           </li>
         </FooterColumn>
       </Container>
