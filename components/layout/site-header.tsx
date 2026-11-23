@@ -18,11 +18,11 @@ export function SiteHeader() {
       >
         {site.ui.skipToContent}
       </a>
-      <Container className="flex h-16 items-center justify-between gap-6 sm:h-20">
+      <Container className="flex h-16 items-center justify-between gap-4 sm:h-20 xl:gap-6">
         <Logo eager className="h-9 sm:h-11" />
 
         <nav aria-label={site.ui.mainNav} className="hidden lg:block">
-          <ul className="flex items-center gap-8 text-sm font-medium">
+          <ul className="flex items-center gap-5 text-sm font-medium whitespace-nowrap xl:gap-8">
             {nav.map((item) => (
               <li key={item.href}>
                 <Link
@@ -45,7 +45,7 @@ export function SiteHeader() {
 
         <div className="flex items-center gap-3">
           <ThemeToggle labels={{ toDark: site.ui.themeToDark, toLight: site.ui.themeToLight }} />
-          <ButtonLink href={site.headerCta.href} variant="inverse" className="max-sm:hidden">
+          <ButtonLink href={site.headerCta.href} variant="inverse" className="whitespace-nowrap max-sm:hidden">
             {site.headerCta.label}
           </ButtonLink>
           <MobileNav items={nav} cta={site.headerCta} labels={{ open: site.ui.openMenu, close: site.ui.closeMenu }} />

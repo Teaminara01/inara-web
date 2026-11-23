@@ -12,20 +12,27 @@ export const site = {
   pitch:
     "Inara AI designs and builds digital products, grows them with performance marketing, and runs them with AI agents that work alongside your team inside the systems you already use.",
 
+  // Source: content-info/inara-brochure-png (contact slide).
   contact: {
-    // TODO(confirm): brief had "admin@https://inara.ai"; assumed admin@inara.ai.
-    email: "admin@inara.ai",
+    email: "admin@inaramarketing.com",
     phones: [
       { display: "+91 96743 41297", tel: "+919674341297" },
-      // TODO(confirm): second number "+91 9030 73304" has 9 digits, add once corrected.
+      { display: "+91 97481 73113", tel: "+919748173113" },
     ],
     whatsapp: {
-      // TODO(confirm): which number is the WhatsApp Business line.
       number: "919674341297",
       defaultMessage: "Hi Inara AI, I'd like to know more about your services.",
       label: "Chat on WhatsApp",
     },
-    location: "India",
+    location: "Kolkata, India",
+    address: {
+      lines: ["P.S Aviator, 3rd Floor, Unit 304", "Atghara, New Town", "Kolkata, West Bengal 700136"],
+      street: "P.S Aviator, 3rd Floor, Unit 304, Atghara, New Town",
+      locality: "Kolkata",
+      region: "West Bengal",
+      postalCode: "700136",
+      country: "IN",
+    },
   },
 
   nav: [
@@ -33,6 +40,7 @@ export const site = {
     { label: "Digital Marketing", href: routes.practice("digital-marketing") },
     { label: "AI & Automation", href: routes.practice("ai-automation"), highlight: true },
     { label: "All services", href: routes.services() },
+    { label: "About", href: routes.about() },
   ],
 
   workLink: { label: "Our Work", href: routes.work() },
@@ -45,6 +53,7 @@ export const site = {
     companyHeading: "Company",
     companyLinks: [
       { label: "Home", href: routes.home() },
+      { label: "About us", href: routes.about() },
       { label: "All services", href: routes.services() },
       { label: "Contact", href: routes.contact() },
     ],
@@ -70,6 +79,7 @@ export const site = {
     relatedServices: "Related services",
     servicesInPractice: "Our services",
     ctaHeading: "Ready to get started?",
+    opensInNewTab: "(opens in a new tab)",
     themeToDark: "Switch to dark mode",
     themeToLight: "Switch to light mode",
     draft: "Draft · sample data",

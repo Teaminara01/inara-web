@@ -24,6 +24,10 @@ import { cro } from "./digital-marketing/cro";
 import { contentMarketing } from "./digital-marketing/content";
 import { ppc } from "./digital-marketing/ppc";
 import { youtube } from "./digital-marketing/youtube";
+import { brandingDesign } from "./digital-marketing/branding-design";
+import { contentProduction } from "./digital-marketing/content-production";
+import { influencerMarketing } from "./digital-marketing/influencer-marketing";
+import { prCommunications } from "./digital-marketing/pr-communications";
 
 import { aiAutomationPractice } from "./ai-automation/practice";
 import { workflowAutomation } from "./ai-automation/workflow-automation";
@@ -38,7 +42,18 @@ export const practices: Practice[] = [
   },
   {
     ...digitalMarketingPractice,
-    services: [seo, socialMedia, cro, contentMarketing, ppc, youtube],
+    services: [
+      seo,
+      socialMedia,
+      cro,
+      contentMarketing,
+      ppc,
+      youtube,
+      brandingDesign,
+      contentProduction,
+      influencerMarketing,
+      prCommunications,
+    ],
   },
   {
     ...aiAutomationPractice,

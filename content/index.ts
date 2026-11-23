@@ -13,6 +13,10 @@ export { site } from "./site";
 export { ctas } from "./ctas";
 export { home } from "./home";
 export { stats } from "./stats";
+export { about } from "./about";
+export { clients } from "./clients";
+export { partners } from "./partners";
+export { creatives } from "./creatives";
 export { contactForm } from "./forms/contact";
 export { servicesPage, notFoundPage, workPage } from "./pages";
 export {

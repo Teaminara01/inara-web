@@ -1,8 +1,9 @@
-import { ctas, getPractice, hasPublishedProjects, practices, projects, site, workPage } from "@/content";
+import { creatives, ctas, getPractice, hasPublishedProjects, practices, projects, site, workPage } from "@/content";
 import { CtaBand } from "@/components/sections/cta-band";
 import { PageHero } from "@/components/sections/page-hero";
 import { Section } from "@/components/ui/section";
 import { SectionHeading } from "@/components/ui/section-heading";
+import { CreativeGallery } from "@/components/work/creative-gallery";
 import { ProjectCard } from "@/components/work/project-card";
 import { ProjectGrid } from "@/components/work/project-grid";
 import { routes } from "@/lib/routes";
@@ -53,6 +54,12 @@ export default function WorkPage() {
           <SectionHeading title={workPage.emptyTitle} intro={workPage.emptyBody} align="center" className="py-12" />
         )}
       </Section>
+
+      {creatives.brands.length > 0 && (
+        <Section tone="surface" id="creatives">
+          <CreativeGallery data={creatives} newTabLabel={site.ui.opensInNewTab} />
+        </Section>
+      )}
 
       <CtaBand title={site.ui.ctaHeading} items={[{ cta: ctas.contact }]} />
     </>

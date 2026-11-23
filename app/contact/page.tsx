@@ -2,7 +2,7 @@ import { Suspense } from "react";
 import { contactForm, getContactForm, site } from "@/content";
 import { WhatsAppLeadForm, WhatsAppLeadFormFromUrl } from "@/components/forms/whatsapp-lead-form";
 import { PageHero } from "@/components/sections/page-hero";
-import { MailIcon, PhoneIcon, WhatsAppIcon } from "@/components/ui/icons";
+import { MailIcon, MapPinIcon, PhoneIcon, WhatsAppIcon } from "@/components/ui/icons";
 import { Section } from "@/components/ui/section";
 import { routes } from "@/lib/routes";
 import { toMetadata } from "@/lib/seo";
@@ -64,6 +64,18 @@ export default function ContactPage() {
                   <MailIcon className="size-5 shrink-0 text-brand" />
                   {contact.email}
                 </a>
+              </li>
+              <li>
+                <address className="flex gap-3 not-italic leading-relaxed">
+                  <MapPinIcon className="mt-0.5 size-5 shrink-0 text-brand" />
+                  <span>
+                    {contact.address.lines.map((line) => (
+                      <span key={line} className="block">
+                        {line}
+                      </span>
+                    ))}
+                  </span>
+                </address>
               </li>
             </ul>
           </aside>

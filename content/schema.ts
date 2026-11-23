@@ -134,6 +134,17 @@ export type PhoneNumber = {
   tel: string;
 };
 
+export type PostalAddress = {
+  /** Display lines, top to bottom. */
+  lines: string[];
+  street: string;
+  locality: string;
+  region: string;
+  postalCode: string;
+  /** ISO 3166-1 alpha-2, e.g. "IN". */
+  country: string;
+};
+
 export type SiteContent = {
   name: string;
   tagline: string;
@@ -149,7 +160,10 @@ export type SiteContent = {
       defaultMessage: string;
       label: string;
     };
+    /** Short location line (footer bottom bar). */
     location: string;
+    /** Office address. `lines` render one per line; the rest feeds JSON-LD. */
+    address: PostalAddress;
   };
   nav: NavLink[];
   /** Added to nav and footer only when at least one project is published. */
@@ -181,6 +195,8 @@ export type SiteContent = {
     relatedServices: string;
     servicesInPractice: string;
     ctaHeading: string;
+    /** Screen-reader suffix for links that open in a new tab. */
+    opensInNewTab: string;
     themeToDark: string;
     themeToLight: string;
     draft: string;
@@ -214,6 +230,33 @@ export type HomeSection =
   | { type: "practices"; title: string; intro: string }
   | { type: "why"; title: string; items: WhyItem[] }
   | { type: "stats" }
+  /** Brands we've worked with, grouped by industry (content/clients.ts). */
+  | { type: "clients" }
+  /** Published case studies as a dark text/image checkerboard (content/projects/). */
+  | {
+      type: "featuredWork";
+      eyebrow: string;
+      title: string;
+      intro?: string;
+      /** Link label on each tile, e.g. "Read more". */
+      readMore: string;
+      /** Link to /work under the grid. */
+      allWork: string;
+      /** Max projects shown (pairs fill rows of 4 tiles; even numbers work best). */
+      limit?: number;
+    }
+  /** Auto-scrolling brand wordmarks/logos from content/clients.ts. */
+  | {
+      type: "brands";
+      /** Heading parts: `title` + highlighted `highlight` + `titleEnd`. */
+      title: string;
+      highlight: string;
+      titleEnd?: string;
+      /** Link to /work. `{count}` is replaced with the number of brands. */
+      footerLabel: string;
+    }
+  /** Platform partners (content/partners.ts). */
+  | { type: "partners" }
   /** Renders a timeline block (shared with a practice page). */
   | { type: "timeline"; block: TimelineBlock }
   | { type: "cta"; title: string; items: { practice: string; cta: Cta }[] };
@@ -228,7 +271,66 @@ export type StatsContent = {
   /** Keep `false` until every value below is a real, verified number. */
   enabled: boolean;
   title: string;
+  /** Optional line under the title. Supports **bold**. */
+  intro?: string;
   items: { label: string; value: string | null }[];
+};
+
+/* ------------------------------------------------------------------ */
+/* Clients, partners, creatives, about                                 */
+/* ------------------------------------------------------------------ */
+
+export type ClientsContent = {
+  title: string;
+  intro: string;
+  groups: { industry: string; brands: string[] }[];
+  /**
+   * Optional logo per brand name (path in public/, e.g. "/brands/jalsutra.svg").
+   * Brands without one render as a text wordmark.
+   */
+  logos?: Partial<Record<string, string>>;
+};
+
+export type PartnersContent = {
+  eyebrow: string;
+  title: string;
+  intro: string;
+  partners: { name: string; tier?: string }[];
+  /** Closing line under the badges. */
+  note: string;
+};
+
+export type ImageAsset = {
+  src: string;
+  alt: string;
+  /** Intrinsic size. When every image in a group has it, the group keeps natural aspect ratios. */
+  width?: number;
+  height?: number;
+};
+
+export type CreativeBrand = {
+  brand: string;
+  industry: string;
+  /** Public Instagram profile, when the brand has one we can link to. */
+  instagram?: string;
+  images: ImageAsset[];
+};
+
+export type CreativesContent = {
+  title: string;
+  intro: string;
+  instagramLabel: string;
+  brands: CreativeBrand[];
+};
+
+export type AboutContent = {
+  seo: Required<Seo>;
+  eyebrow: string;
+  title: string;
+  lead: string;
+  story: { title: string; paragraphs: string[] };
+  blocks: ContentBlock[];
+  cta: { title: string; intro: string; cta: Cta };
 };
 
 /* ------------------------------------------------------------------ */
@@ -248,7 +350,8 @@ export type Project = {
   /** One or two sentences for cards and the meta description. */
   summary: string;
   industry: string;
-  year: string;
+  /** Omit when unknown; the meta row then skips it. */
+  year?: string;
   practices: PracticeSlug[];
   /** Services delivered, as links to service pages. */
   services: ContentLink[];
@@ -258,6 +361,12 @@ export type Project = {
   solution: string;
   /** Headline numbers. Only real, client-approved figures. */
   results?: { value: string; label: string }[];
+  /** Qualitative outcomes, shown as a list under the numbers. */
+  outcomes?: string[];
+  /** What we delivered (branding, packaging, film…), shown as chips. */
+  deliverables?: string[];
+  /** Extra images in public/, shown after the write-up. */
+  gallery?: ImageAsset[];
   stack?: string[];
   testimonial?: { quote: string; author: string; role: string };
   /** Live site, if public. */
@@ -281,6 +390,8 @@ export type WorkPageContent = {
     challenge: string;
     solution: string;
     results: string;
+    deliverables: string;
+    gallery: string;
     stack: string;
     visit: string;
     viewProject: string;

@@ -10,12 +10,26 @@
  */
 import type { Project } from "../schema";
 
+import { ammasSpecial } from "./ammas-special";
+import { neotiaGetwel } from "./neotia-getwel";
+import { genomeFertility } from "./genome-fertility";
+import { dosaCoffee } from "./dosa-coffee";
+import { calcuttaGin } from "./calcutta-gin";
+import { bonneFemme } from "./bonne-femme";
+
 import { sampleManufacturingAgents } from "./sample-manufacturing-agents";
 import { sampleHeadlessCommerce } from "./sample-headless-commerce";
 import { sampleSaasMvp } from "./sample-saas-mvp";
 import { sampleLocalSeo } from "./sample-local-seo";
 
 const allProjects: Project[] = [
+  ammasSpecial,
+  neotiaGetwel,
+  genomeFertility,
+  dosaCoffee,
+  calcuttaGin,
+  bonneFemme,
+  // Fictional layout samples (draft: dev only).
   sampleManufacturingAgents,
   sampleHeadlessCommerce,
   sampleSaasMvp,

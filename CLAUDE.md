@@ -3,12 +3,12 @@
 ## Project Overview
 
 - **Brand:** Inara AI. Tagline: "We make it matter". Positioning: **Build. Grow. Automate.**
-- **What it is:** Corporate/agency website (and future client dashboard) for an India-based agency with three practices:
+- **What it is:** Corporate/agency website (and future client dashboard) for a Kolkata-based full-service digital agency (founded April 2024) with three practices:
   1. **Development:** web, web apps, mobile, e-commerce, SaaS
-  2. **Digital Marketing:** SEO, social media, CRO, content, PPC, YouTube
+  2. **Digital Marketing:** SEO, social media, CRO, content, PPC, YouTube, branding & design, content & film production, influencer marketing, PR & communications
   3. **AI & Intelligent Automation:** workflow automation, conversational AI, BI, multi-agent orchestration
 - **Brand look:** black / white with yellow `#fed700` as the accent. Fonts: Boomstad (display) and Poppins (body).
-- **Contact details:** kept only in `content\site.ts` (email, phones, WhatsApp number). Don't copy them into docs or code.
+- **Contact details:** kept only in `content\site.ts` (email, phones, WhatsApp number, office address). Don't copy them into docs or code.
 - **Stack:** Next.js 16.4 (App Router, `cacheComponents` + `partialPrefetching` enabled), React 19.3, Tailwind CSS v4, TypeScript strict.
 - **Backend:** **None.** The site is fully static. Forms submit by opening a pre-filled **WhatsApp** chat (`wa.me`). See `.claude\BACKEND.md`.
 - **Content:** file-based, type-safe TypeScript content files in `content\` (imported via `@/content`). See `.claude\CONTENT.md`.
@@ -40,6 +40,7 @@
 | -------------------------------------- | ------------------------------------------ |
 | Site content store (TS)                | `content\`                                 |
 | Full services copy (brief)             | `content-info\inara-ai-services.md`        |
+| Agency brochure (33 slides): story, DNA, process, stats, clients, partners, case studies, creatives, contact | `content-info\inara-brochure-png\` |
 | Brand sheet (colors, fonts, footer)    | `content-info\color-code.jpeg`             |
 | Logo (transparent, use this)           | `content-info\inara-logo-transparent.png`  |
 | Logo (white background, reference)     | `content-info\logo.jpeg`                   |
@@ -79,7 +80,7 @@ outes.ts`    |
 - **Strict Separation of Concerns:** Keep presentation, business logic, analytics tracking, and API communications completely decoupled.
 - **No Backend:** Don't create API routes, Route Handlers, Server Actions, or databases for data submission. All forms go through WhatsApp (`.claude\BACKEND.md`) unless the user explicitly changes this.
 - **Content in Files, Not JSX:** All user-visible copy, contact details, nav, CTAs, and SEO metadata come from `content\*.ts` through `@/content`. Never hard-code them in components (`.claude\CONTENT.md`).
-- **Content Alignment:** Keep all service definitions, agency copy, and tech stacks aligned with `content-info\inara-ai-services.md` (see `.claude\services.md`). Never invent stats, clients, or testimonials. Track-record numbers are placeholders until the user supplies them. Client projects are published only with real, client-approved details. Sample projects stay `draft: true` (dev-only).
+- **Content Alignment:** Keep all service definitions, agency copy, and tech stacks aligned with `content-info\inara-ai-services.md` (see `.claude\services.md`). Never invent stats, clients, or testimonials. Track-record numbers, client names, and case-study results come from the brochure (`content-info\inara-brochure-png\`). Client projects are published only with real, client-approved details. Sample projects stay `draft: true` (dev-only).
 - **Brand Alignment:** Use only the palette and fonts in `.claude\STYLE_GUIDE.md`, exposed as Tailwind v4 tokens (no hard-coded hex in components). Never put yellow text on white.
 - **Dark Mode:** Every surface and text colour must use the theme-aware tokens (`bg-canvas`, `bg-card`, `text-fg`, `border-line`, `text-muted`). `ink`/`paper` are fixed colours, for text on yellow and always-dark bands only. Check new UI in both modes.
 
